@@ -1,5 +1,5 @@
 // import DashBoard from "./components/DashBoard";
-import MyNavbar from "./components/MyNavbar";
+// import MyNavbar from "./components/MyNavbar";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import ForgotPassword from "./components/ForgotPassword";
@@ -14,11 +14,11 @@ function App() {
 
   return (
     <div className="App">
-      <MyNavbar />
+      {/* <MyNavbar /> */}
       <Routes>
-      <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/SignIn" element={<SignIn />} />
-          <Route path="/ForgotPassword" element={<ForgotPassword />} />
+      <Route path="/" index element={<SignUp />} />
+      <Route path="/SignIn" element={<SignIn />} />
+      <Route path="/ForgotPassword" element={<ForgotPassword />} />
     </Routes>
 
         {/* <DashBoard /> */} 

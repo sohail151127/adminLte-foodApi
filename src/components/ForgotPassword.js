@@ -32,7 +32,7 @@ const ForgotPassword = () => {
         <Link to="/SignIn">Login</Link>
       </p>
       <p className="mb-0">
-        <Link to="/SignUp" className="text-center">Register a new membership</Link>
+        <Link to="/" className="text-center">Register a new membership</Link>
       </p>
     </div>
     {/* /.login-card-body */}
