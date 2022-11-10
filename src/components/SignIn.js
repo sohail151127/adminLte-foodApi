@@ -1,20 +1,64 @@
-import React from 'react'
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const navigate = useNavigate()
+
+  const emailHandler=(e)=>{
+    setEmail(e.target.value)
+    // console.log(email)
+  }
+
+  const passwordHandler=(e)=>{
+    setPassword(e.target.value)
+    // console.log(password)
+  }
+
+  const signInData=(e)=>{
+    e.preventDefault()
+    let sData = {
+      email,
+      password
+    }
+    console.log(sData)
+
+    let localRegister = localStorage.getItem("register")
+    if(localRegister!==null){
+      let localSignUp = JSON.parse(localRegister)
+      if(localSignUp.email===email && localSignUp.password===password){
+      navigate("/DashBoard")
+      }
+    }
+  
+    setEmail("");
+    setPassword("");
+  }
+
+
   return (
+
     <div className='d-flex justify-content-center'>
         <div className="login-box">
   <div className="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href='/'><b>Admin</b>LTE</a>
   </div>
   {/* /.login-logo */}
   <div className="card">
     <div className="card-body login-card-body">
       <p className="login-box-msg">Sign in to start your session</p>
-      <form action="../../index3.html" method="post">
+      <form>
         <div className="input-group mb-3">
-          <input type="email" className="form-control" placeholder="Email" />
+
+          <input type="email" 
+              onChange={emailHandler}
+              value={email}
+              className="form-control" 
+              placeholder="Email" 
+              />
+
           <div className="input-group-append">
             <div className="input-group-text">
               <span className="fas fa-envelope" />
@@ -22,7 +66,15 @@ const SignIn = () => {
           </div>
         </div>
         <div className="input-group mb-3">
-          <input type="password" className="form-control" placeholder="Password" />
+
+          <input type="password" 
+              onChange={passwordHandler}
+              value={password}
+              className="form-control" 
+              placeholder="Password" 
+              />
+
+
           <div className="input-group-append">
             <div className="input-group-text">
               <span className="fas fa-lock" />
@@ -40,7 +92,13 @@ const SignIn = () => {
           </div>
           {/* /.col */}
           <div className="col-4">
-            <button type="submit" className="btn btn-primary btn-block">Sign In</button>
+
+            <button type="submit" 
+                  onClick={signInData}
+                  className="btn btn-primary btn-block">
+                      Sign In
+            </button>
+
           </div>
           {/* /.col */}
         </div>
@@ -59,7 +117,7 @@ const SignIn = () => {
         <Link to="/ForgotPassword">I forgot my password</Link>
       </p>
       <p className="mb-0">
-        <Link to="/" className="text-center">Register a new membership</Link>
+        <Link to="/adminLte" className="text-center">Register a new membership</Link>
       </p>
     </div>
     {/* /.login-card-body */}

@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate()
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [retypePassword, setRetypePassword] = useState("")
+
 
   const nameHandler=(e)=>{
     setName(e.target.value)
@@ -25,6 +27,8 @@ const SignUp = () => {
   }
 
   const register=()=>{
+    
+    console.log("sohail")
     let registrationData = {
       name,
       email,
@@ -32,9 +36,14 @@ const SignUp = () => {
       retypePassword
     }
     console.log("registrationData:",registrationData)
+    localStorage.setItem("register", JSON.stringify(registrationData))
+
+    navigate("/SignIn")
   }
+
   return (
-    <div className='d-flex justify-content-center'>
+
+    <div className='d-flex justify-content-center hold-transition register-page'>
         <div className="register-box">
   <div className="register-logo">
     <h4><b>Admin</b>LTE</h4>
@@ -107,7 +116,7 @@ const SignUp = () => {
           
           <div className="col-4">
             <button type="submit" 
-                onSubmit={register}
+                onClick={register}
                 className="btn btn-primary btn-block"
                 >
                     Register
