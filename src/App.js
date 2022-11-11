@@ -18,7 +18,7 @@ function App() {
       <Route path="/adminLte" element={<SignUp />} />
       <Route path="/SignIn" element={<SignIn />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
-      <Route path="/HomePage" element={<Protected comp={HomePage} />} />
+      <Route path="/HomePage" element={<Protected HomeComp={HomePage} />} />
     </Routes>
 
         

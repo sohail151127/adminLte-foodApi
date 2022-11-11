@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import HomePage from './HomePage'
 
-export const Protected = ( ) => {
+export const Protected = (props) => {
     const navigate=useNavigate()
-    // let HomePage = props.comp
+    const {HomeComp} = props
 
     useEffect(() => {
-        if (localStorage.getItem("user-info")){
-            navigate("/HomePage")
-        } else{
+        let login = localStorage.getItem("user-info")
+        if (!login){
             navigate("/SignIn")
         }
     }, [])
@@ -17,7 +15,7 @@ export const Protected = ( ) => {
     
   return (
     <div>
-        <HomePage />
+        <HomeComp />
     </div>
   )
 }
