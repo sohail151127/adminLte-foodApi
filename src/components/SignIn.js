@@ -1,3 +1,5 @@
+import { Alert, Snackbar } from '@mui/material';
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,6 +8,9 @@ const SignIn = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
+
+  const [errorMessage, setErrorMessage] = useState("")
+  const [message, setMessage] = useState(false)
 
   const emailHandler=(e)=>{
     setEmail(e.target.value)
@@ -20,23 +25,57 @@ const SignIn = () => {
   const signInData=(e)=>{
     e.preventDefault()
     let sData = {
-      email,
-      password
+      email: email,
+      password: password
     }
-    console.log(sData)
+    
 
-    let localRegister = localStorage.getItem("register")
-    if(localRegister!==null){
-      let localSignUp = JSON.parse(localRegister)
-      if(localSignUp.email===email && localSignUp.password===password){
-      navigate("/DashBoard")
+    let config = {
+      method: "post",
+      url: "http://testapi.techenablers.info/api/auth/login",
+      data: JSON.stringify(sData),
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
       }
     }
-  
-    setEmail("");
-    setPassword("");
-  }
 
+    axios(config)
+    .then((res)=>{
+      console.log("onSignInPageRes:",res);
+      
+      // localStorage.setItem("response", JSON.stringify(res))
+      let token= res.data.access_token
+      localStorage.setItem('token',token)
+      localStorage.setItem("user-info",JSON.stringify(res))
+
+      setEmail("");
+      setPassword("");
+
+      navigate("/HomePage")
+      
+    }).catch((error)=>{
+      console.log("signInError:",error)
+      let Error = error.response.data.error
+      let PasswordError = error.response.data.password
+      let EmailError = error.response.data.email
+      console.log(Error)
+      if(Error){
+        setErrorMessage(Error)
+        setMessage(true)
+      }else if (PasswordError){
+        setErrorMessage(PasswordError)
+        setMessage(true)
+      } else if (EmailError){
+        setErrorMessage(EmailError)
+        setMessage(true)
+      } else{
+        setErrorMessage("")
+        setMessage(false)
+      }
+    })
+    
+  }
 
   return (
 
@@ -98,6 +137,13 @@ const SignIn = () => {
                   className="btn btn-primary btn-block">
                       Sign In
             </button>
+            {/* ................ */}
+            <Snackbar open={message} autoHideDuration={5000}>
+                <Alert severity="error" sx={{ width: '100%' }}>
+                  {errorMessage}
+                </Alert>
+            </Snackbar>
+            {/* ................ */}
 
           </div>
           {/* /.col */}

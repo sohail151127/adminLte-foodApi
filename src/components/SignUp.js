@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { Alert, Snackbar } from '@mui/material';
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -7,6 +9,13 @@ const SignUp = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [retypePassword, setRetypePassword] = useState("")
+  const [message, setMessage] = useState(false)
+
+  const [emailMessage, setEmailMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState(false)
+
+  const [ErrorPmessage, setErrorPmessage] = useState(false)
+  const [PasswordMessage, setPasswordMessage] = useState("")
 
 
   const nameHandler=(e)=>{
@@ -26,19 +35,67 @@ const SignUp = () => {
     // console.log("retypePassword:",retypePassword)
   }
 
-  const register=()=>{
+  const register=(e)=>{
     
-    console.log("sohail")
-    let registrationData = {
-      name,
-      email,
-      password,
-      retypePassword
-    }
-    console.log("registrationData:",registrationData)
-    localStorage.setItem("register", JSON.stringify(registrationData))
+    e.preventDefault();
 
-    navigate("/SignIn")
+    if (name.length > 0 && email.length > 0 && password > 0 && retypePassword > 0){
+
+      const SignUpData ={
+        name: name,
+        email: email,
+        password: password,
+        password_confirmation: retypePassword
+      }
+
+      let config = {
+        method: "post",
+        url: "http://testapi.techenablers.info/api/auth/register",
+        data: JSON.stringify(SignUpData),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+      }
+  
+      axios(config)
+      .then((res)=>{
+        console.log("Register-res",res);
+        // let result = res.data.message 
+        // console.log("message:", result)
+        setMessage(true)
+
+        localStorage.setItem("SignUpData", JSON.stringify(SignUpData))
+
+        setName("")
+        setEmail("")
+        setPassword("")
+        setRetypePassword("")
+
+        navigate("/SignIn")
+
+      }).catch((error)=>{
+        console.log("Error:",error)
+        let Error = JSON.parse(error.response.data)
+        // console.log("error-message:",Error.email)
+        if(Error.email){
+          setErrorMessage(true)
+          setEmailMessage(Error.email)
+
+        }else if(Error.password){
+          setErrorPmessage(true)
+          setPasswordMessage(Error.password)
+        } else {
+          setErrorMessage(false)
+          setErrorPmessage(false)
+        }
+        
+      })      
+
+    }else{
+      navigate("/adminLte")
+    }
+
   }
 
   return (
@@ -121,6 +178,25 @@ const SignUp = () => {
                 >
                     Register
             </button>
+            {/* .................................. */}
+              <Snackbar open={message} autoHideDuration={6000}>
+                <Alert severity="success" sx={{ width: '100%' }}>
+                  You are Registered Successfully
+                </Alert>
+              </Snackbar>
+
+              <Snackbar open={errorMessage} autoHideDuration={6000}>
+                <Alert severity="error" sx={{ width: '100%' }}>
+                  {emailMessage}
+                </Alert>
+              </Snackbar>
+              
+              <Snackbar open={ErrorPmessage} autoHideDuration={5000}>
+                <Alert severity="error" sx={{ width: '100%' }}>
+                  {PasswordMessage}
+                </Alert>
+              </Snackbar>
+            {/* .................................. */}
           </div>
           
         </div>
