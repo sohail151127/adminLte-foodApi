@@ -14,12 +14,10 @@ const SignIn = () => {
 
   const emailHandler=(e)=>{
     setEmail(e.target.value)
-    // console.log(email)
   }
 
   const passwordHandler=(e)=>{
     setPassword(e.target.value)
-    // console.log(password)
   }
 
   const signInData=(e)=>{
@@ -44,9 +42,8 @@ const SignIn = () => {
     .then((res)=>{
       console.log("onSignInPageRes:",res);
       
-      // localStorage.setItem("response", JSON.stringify(res))
-      let token= res.data.access_token
-      localStorage.setItem('token',token)
+      // let token= res.data.access_token
+      // localStorage.setItem('token',token)
       localStorage.setItem("user-info",JSON.stringify(res))
 
       setEmail("");
@@ -122,12 +119,12 @@ const SignIn = () => {
         </div>
         <div className="row">
           <div className="col-8">
-            <div className="icheck-primary">
+            {/* <div className="icheck-primary">
               <input type="checkbox" id="remember" />
               <label htmlFor="remember">
                 Remember Me
               </label>
-            </div>
+            </div> */}
           </div>
           {/* /.col */}
           <div className="col-4">
@@ -149,7 +146,7 @@ const SignIn = () => {
           {/* /.col */}
         </div>
       </form>
-      <div className="social-auth-links text-center mb-3">
+      {/* <div className="social-auth-links text-center mb-3">
         <p>- OR -</p>
         <a href="/" className="btn btn-block btn-primary">
           <i className="fab fa-facebook mr-2" /> Sign in using Facebook
@@ -157,7 +154,7 @@ const SignIn = () => {
         <a href="/" className="btn btn-block btn-danger">
           <i className="fab fa-google-plus mr-2" /> Sign in using Google+
         </a>
-      </div>
+      </div> */}
       {/* /.social-auth-links */}
       <p className="mb-1">
         <Link to="/ForgotPassword">I forgot my password</Link>

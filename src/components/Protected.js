@@ -16,6 +16,8 @@ export const Protected = (props) => {
   return (
     <div>
         <HomeComp />
+        {/* <BlankPage /> */}
+        {/* <Form /> */}
     </div>
   )
 }

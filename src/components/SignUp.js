@@ -20,19 +20,18 @@ const SignUp = () => {
 
   const nameHandler=(e)=>{
     setName(e.target.value)
-    // console.log("name:",name)
   }
+
   const emailHandler=(e)=>{
     setEmail(e.target.value)
-    // console.log("email:",email)
   }
+
   const passwordHandler=(e)=>{
     setPassword(e.target.value)
-    // console.log("password:",password)
   }
+
   const retypePasswordHandler=(e)=>{
     setRetypePassword(e.target.value)
-    // console.log("retypePassword:",retypePassword)
   }
 
   const register=(e)=>{
@@ -61,11 +60,7 @@ const SignUp = () => {
       axios(config)
       .then((res)=>{
         console.log("Register-res",res);
-        // let result = res.data.message 
-        // console.log("message:", result)
         setMessage(true)
-
-        localStorage.setItem("SignUpData", JSON.stringify(SignUpData))
 
         setName("")
         setEmail("")
@@ -163,12 +158,12 @@ const SignUp = () => {
         </div>
         <div className="row">
           <div className="col-8">
-            <div className="icheck-primary">
+            {/* <div className="icheck-primary">
               <input type="checkbox" id="agreeTerms" name="terms" defaultValue="agree" />
               <label htmlFor="agreeTerms">
                 I agree to the <a href="/">terms</a>
               </label>
-            </div>
+            </div> */}
           </div>
           
           <div className="col-4">
@@ -201,7 +196,7 @@ const SignUp = () => {
           
         </div>
       </form>
-      <div className="social-auth-links text-center">
+      {/* <div className="social-auth-links text-center">
         <p>- OR -</p>
         <a href="/" className="btn btn-block btn-primary">
           <i className="fab fa-facebook mr-2" />
@@ -211,7 +206,7 @@ const SignUp = () => {
           <i className="fab fa-google-plus mr-2" />
           Sign up using Google+
         </a>
-      </div>
+      </div> */}
       <Link to="/SignIn" className="text-center">I already have a membership</Link>
     </div>
     {/* /.form-box */}

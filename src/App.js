@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import { Protected } from "./components/Protected";
+import BlankPage from "./components/blankPage/BlankPage";
+import Form from "./components/form/Form";
 
 
 function App() {
@@ -19,6 +21,12 @@ function App() {
       <Route path="/SignIn" element={<SignIn />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
       <Route path="/HomePage" element={<Protected HomeComp={HomePage} />} />
+
+      <Route path="/BlankPage" element={<Protected HomeComp={BlankPage} />} />
+      <Route path="/Form" element={<Protected HomeComp={Form} />} />
+
+       {/* <Route path="/BlankPage" element={<BlankPage />} /> */}
+      {/* <Route path="/Form" element={<Form />} /> */}
     </Routes>
 
         
