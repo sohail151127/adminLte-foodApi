@@ -5,7 +5,7 @@ const MyNavbar = () => {
 
   const logOut=()=>{
     localStorage.removeItem("user-info")
-    navigate("/adminLte")
+    navigate("/")
   }
 
   return (

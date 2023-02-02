@@ -88,7 +88,7 @@ const SignUp = () => {
       })      
 
     }else{
-      navigate("/adminLte")
+      navigate("/")
     }
 
   }

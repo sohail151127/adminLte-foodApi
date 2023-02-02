@@ -271,7 +271,7 @@ const LeftSideBar = () => {
                 </ul>
               </li>
               <li className="nav-item">
-                <a href="/" className="nav-link">
+                <a href="Form" className="nav-link">
                   <i className="nav-icon fas fa-edit" />
                   <p>
                     Forms

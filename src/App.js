@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-      <Route path="/adminLte" element={<SignUp />} />
+      <Route path="/" element={<SignUp />} />
       <Route path="/SignIn" element={<SignIn />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
       <Route path="/HomePage" element={<Protected HomeComp={HomePage} />} />
@@ -25,8 +25,6 @@ function App() {
       <Route path="/BlankPage" element={<Protected HomeComp={BlankPage} />} />
       <Route path="/Form" element={<Protected HomeComp={Form} />} />
 
-       {/* <Route path="/BlankPage" element={<BlankPage />} /> */}
-      {/* <Route path="/Form" element={<Form />} /> */}
     </Routes>
 
         

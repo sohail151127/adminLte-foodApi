@@ -76,7 +76,7 @@ const SignIn = () => {
 
   return (
 
-    <div className='d-flex justify-content-center'>
+    <div className='d-flex justify-content-center' style={{position: "fixed", top: "20vh", left: "35vw"}} >
         <div className="login-box">
   <div className="login-logo">
     <a href='/'><b>Admin</b>LTE</a>
@@ -160,7 +160,7 @@ const SignIn = () => {
         <Link to="/ForgotPassword">I forgot my password</Link>
       </p>
       <p className="mb-0">
-        <Link to="/adminLte" className="text-center">Register a new membership</Link>
+        <Link to="/" className="text-center">Register a new membership</Link>
       </p>
     </div>
     {/* /.login-card-body */}
