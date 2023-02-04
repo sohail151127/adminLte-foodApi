@@ -5,10 +5,12 @@ import { Alert, Snackbar } from '@mui/material';
 
 const SignUp = () => {
   const navigate = useNavigate()
-  const [name, setName] = useState("")
+  const [fName, setFname] = useState("")
+  const [lName, setLname] = useState("")
+  const [userName, setUserName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [retypePassword, setRetypePassword] = useState("")
+  const [phone, setPhone] = useState("")
   const [message, setMessage] = useState(false)
 
   const [emailMessage, setEmailMessage] = useState("")
@@ -18,8 +20,16 @@ const SignUp = () => {
   const [PasswordMessage, setPasswordMessage] = useState("")
 
 
-  const nameHandler=(e)=>{
-    setName(e.target.value)
+  const fNameHandler=(e)=>{
+    setFname(e.target.value)
+  }
+
+  const lNameHandler=(e)=>{
+    setLname(e.target.value)
+  }
+
+  const userNameHandler=(e)=>{
+    setUserName(e.target.value)
   }
 
   const emailHandler=(e)=>{
@@ -30,26 +40,28 @@ const SignUp = () => {
     setPassword(e.target.value)
   }
 
-  const retypePasswordHandler=(e)=>{
-    setRetypePassword(e.target.value)
+  const phoneHandler=(e)=>{
+    setPhone(e.target.value)
   }
 
   const register=(e)=>{
     
     e.preventDefault();
 
-    if (name.length > 0 && email.length > 0 && password > 0 && retypePassword > 0){
+    if (fName.length > 0 && lName.length > 0 && userName.length > 0 && email.length > 0 && password > 0 && phone > 0){
 
       const SignUpData ={
-        name: name,
+        first_name: fName,
+        last_name:  lName,
+        username:   userName,
         email: email,
         password: password,
-        password_confirmation: retypePassword
+        phone: phone
       }
 
       let config = {
         method: "post",
-        url: "http://testapi.techenablers.info/api/auth/register",
+        url: "https://www.foodapis.techenablers/api/register",
         data: JSON.stringify(SignUpData),
         headers: {
           "Content-Type": "application/json",
@@ -62,10 +74,12 @@ const SignUp = () => {
         console.log("Register-res",res);
         setMessage(true)
 
-        setName("")
+        setFname("")
+        setLname("")
+        setUserName("")
         setEmail("")
         setPassword("")
-        setRetypePassword("")
+        setPhone("")
 
         navigate("/SignIn")
 
@@ -104,12 +118,40 @@ const SignUp = () => {
     <div className="card-body register-card-body">
       <p className="login-box-msg">Register a new membership</p>
       <form>
+        <div className='d-flex'>
+        <div className="input-group mb-3 mr-1">
+          <input type="text" 
+              onChange={fNameHandler}
+              value={fName}
+              className="form-control" 
+              placeholder="First Name" 
+              />
+          <div className="input-group-append">
+            <div className="input-group-text">
+            </div>
+          </div>
+        </div>
+        <div className="input-group mb-3 ml-1">
+          <input type="text" 
+              onChange={lNameHandler}
+              value={lName}
+              className="form-control" 
+              placeholder="Last Name" 
+              />
+          <div className="input-group-append">
+            <div className="input-group-text">
+            </div>
+          </div>
+        </div>
+        </div>
+
+
         <div className="input-group mb-3">
           <input type="text" 
-              onChange={nameHandler}
-              value={name}
+              onChange={userNameHandler}
+              value={userName}
               className="form-control" 
-              placeholder="Full name" 
+              placeholder="User Name" 
               />
           <div className="input-group-append">
             <div className="input-group-text">
@@ -144,15 +186,15 @@ const SignUp = () => {
           </div>
         </div>
         <div className="input-group mb-3">
-          <input type="password"
-              onChange={retypePasswordHandler}
-              value={retypePassword} 
+          <input type="number"
+              onChange={phoneHandler}
+              value={phone} 
               className="form-control" 
-              placeholder="Retype password" 
+              placeholder="phone" 
               />
           <div className="input-group-append">
             <div className="input-group-text">
-              <span className="fas fa-lock" />
+              <span className="fas fa-phone" />
             </div>
           </div>
         </div>
@@ -207,7 +249,7 @@ const SignUp = () => {
           Sign up using Google+
         </a>
       </div> */}
-      <Link to="/SignIn" className="text-center">I already have a membership</Link>
+      <Link to="/SignIn" className="text-center">I already have an account</Link>
     </div>
     {/* /.form-box */}
   </div>{/* /.card */}

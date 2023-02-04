@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   return (
-    <div className='d-flex justify-content-center'>
+    <div className='d-flex justify-content-center hold-transition register-page'>
         <div className="login-box">
   <div className="login-logo">
     <a href="../../index2.html"><b>Admin</b>LTE</a>
@@ -11,7 +11,7 @@ const ForgotPassword = () => {
   {/* /.login-logo */}
   <div className="card">
     <div className="card-body login-card-body">
-      <p className="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
+      <p className="login-box-msg">Here you can easily retrieve a new password</p>
       <form action="recover-password.html" method="post">
         <div className="input-group mb-3">
           <input type="email" className="form-control" placeholder="Email" />

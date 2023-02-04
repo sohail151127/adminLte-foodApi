@@ -22,7 +22,7 @@ const SignIn = () => {
 
   const signInData=(e)=>{
     e.preventDefault()
-    let sData = {
+    let data = {
       email: email,
       password: password
     }
@@ -30,8 +30,8 @@ const SignIn = () => {
 
     let config = {
       method: "post",
-      url: "http://testapi.techenablers.info/api/auth/login",
-      data: JSON.stringify(sData),
+      url: "https://www.foodapis.techenablers/api/login",
+      data: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
@@ -72,11 +72,13 @@ const SignIn = () => {
       }
     })
     
+    // style={{position: "fixed", top: "20vh", left: "35vw"}}
+
   }
 
   return (
 
-    <div className='d-flex justify-content-center' style={{position: "fixed", top: "20vh", left: "35vw"}} >
+    <div className='d-flex justify-content-center register-page' >
         <div className="login-box">
   <div className="login-logo">
     <a href='/'><b>Admin</b>LTE</a>
@@ -127,7 +129,7 @@ const SignIn = () => {
             </div> */}
           </div>
           {/* /.col */}
-          <div className="col-4">
+          <div className="col-sm-4">
 
             <button type="submit" 
                   onClick={signInData}
