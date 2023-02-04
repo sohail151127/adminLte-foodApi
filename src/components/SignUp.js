@@ -116,7 +116,7 @@ const SignUp = () => {
   </div>
   <div className="card">
     <div className="card-body register-card-body">
-      <p className="login-box-msg">Register a new membership/good sohail</p>
+      <p className="login-box-msg">Register a new membership</p>
       <form>
         <div className='d-flex'>
         <div className="input-group mb-3 mr-1">
